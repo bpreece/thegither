@@ -1,0 +1,95 @@
+{% extends "template/thegither.html" %}
+
+{% block header_block %}
+   {#
+    # Attributes that apply only to main.html
+    #}
+
+   <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Capriola'>
+   <style type='text/css'>
+      #front_page {
+         margin:auto;
+         font-family:Arial,sans-serif;
+      }
+      .blare {
+         margin: 40px;
+         padding: 26px;
+         background-color: #c4ddff;
+         background-image: url(/img/blare-background.png);
+         background-repeat: no-repeat;
+         font-family: Capriola,Arial,sans-serif;
+         border: 4px solid #333;
+         border-radius: 1em;
+         text-align: center;
+      }
+      .blare div {
+         margin: 0.5em;
+      }
+      .exhortation {
+         margin: 1em 40px;
+         font-size:115%;
+         font-family: Times New Roman,serif;
+         font-style: italic;
+      }
+      .link-images {
+         text-align: center;
+      }
+      .link-image {
+         display: inline-block;
+         margin: 1em 40px;
+         text-align: center;
+      }
+      .link-image .label {
+         font-size: 150%;
+         font-family: Arial;sans-serif;
+      }
+      @media only screen and (min-width:720px) {
+         #front_page {
+            width: 720px;
+         }
+      }
+      @media only screen and (max-width:479px) {
+         .blare {
+            font-size: 100%;
+         }
+      }
+      @media only screen and (max-width:320px) {
+         #main_wrapper {
+            width: 320px;
+         }
+      }
+   </style>
+{% endblock %}
+
+{% block contents %}
+   <div id="front_page">
+      <div class='blare'>
+         <div style="font-size: 200%">Connect all the peoples!</div>
+         <div style="font-size: 150%">All your people are belong to you!</div>
+         {% if not user %}
+            <div style="font-family:Times New Roman, serif;font-style:italic">Sign on with your Google account to start.</div>
+         {% endif %}
+      </div>
+      <div class='exhortation'>
+         Want to check us out first?  Click on a sample page to see a what you could already be doing!
+      </div>
+      <div class='link-images'>
+         <div class='link-image'>
+            <a href='/demo/board-ag1kZXZ-dGhlZ2l0aGlychILEgVCb2FyZBiAgICAgICACgw.html'>
+               <img src="img/job-board.png"><br>
+               <span class='label'>Job Board</span>
+            </a>
+         </div><div class='link-image'>
+            <a href='/demo/board-ag1kZXZ-dGhlZ2l0aGlychILEgVCb2FyZBiAgICAgOCXCgw.html'>
+               <img src="img/Lost-and-found.png"><br>
+               <span class='label'>Lost &amp; Found</span>
+            </a>
+         </div><div class='link-image'>
+            <a href='/demo/board-ag1kZXZ-dGhlZ2l0aGlychILEgVCb2FyZBiAgICAgNC7Cgw.html'>
+               <img src="img/Rideshare.png"><br>
+               <span class='label'>Rideshare</span>
+            </a>
+         </div>
+      </div>
+   </div> <!-- /front_page -->
+{% endblock %}

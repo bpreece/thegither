@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <link rel="stylesheet" type="text/css" href="css/layout.css" media="all" />
+      <link rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Noto+Sans'>
+      <style>
+         #header { font-family: Noto Sans, sans-serif }
+      </style>
+      {% block header_block %}
+      {% endblock %}
+      <title>Thegither {{page_title}}</title>
+   </head>
+   <body class="{{body_class}}">
+       <div id="main_wrapper">
+          {% block header %}
+          <div id="header">
+             <div id="title"><a href="/board?id={{board_id}}">{{page_title}}</a></div>
+          </div> <!-- /header -->
+          {% endblock %}
+          <div id="page_contents">
+             <div>
+               {% block main_menu %}
+               {% endblock %}
+               {% if user %}
+               <div id="user_id">
+                  <a href="/user-boards?id={{user.user_id()}}">{{user.nickname()}}</a>
+               </div>
+               {% endif %}
+             </div>
+             <div id="main_contents">
+                {% block intro %}
+                {% endblock %}
+                {% block page_menu %}
+                {% endblock %}
+                {% block contents %}
+                <div class="user-message">
+                   --- NEED TO DEFINE THE MAIN CONTENTS ---
+                </div>
+                {% endblock %}
+             </div> <!-- /main-contents -->
+          </div> <!-- /page-contents -->
+          <div id="footer">
+             <div class="layout-wrapper">
+                  <div id="slogan"><a href="/">A' thegither they will sup!</a></div>
+                  <!-- <div id="copyright">Copyright 2013.   All rights reserved.</div> -->
+             </div> <!-- /layout-wrapper -->
+          </div> <!-- /footer -->
+      </div> <!-- /main-wrapper -->
+   </body>
+</html>

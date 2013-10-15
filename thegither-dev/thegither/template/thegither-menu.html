@@ -1,0 +1,13 @@
+
+   {% if user %}
+      <ul class="menu-list right-menu">
+         <li class="menu-item"><a href="user-boards?id={{user.user_id()}}">My Boards</a></li>
+         <li class="menu-item"><a href="user-posts?id={{user.user_id()}}">My Posts</a></li>
+         <li class="menu-item"><a href="{{sign_off_url}}">Sign off</a></li>
+      </ul> <!-- /right-menu -->
+   {% else %} {# ?user #}
+      <ul class="menu-list right-menu">
+         <li class="menu-item"><a href="{{sign_on_url}}">Sign on</a></li>
+      </ul> <!-- /left-menu -->
+   {% endif %} {# /user #}
+      <div style="clear:both"></div>

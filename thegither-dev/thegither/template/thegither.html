@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <link rel="stylesheet" type="text/css" href="css/thegither.css" media="all" />
+      {% block header_block %}
+      {% endblock %}
+      <title>Thegither {{page_title}}</title>
+   </head>
+   <body class="{{body_class}}">
+       <div id="main_wrapper">
+          <div id="header">
+             <div id="left_logo"><a href="/"><img src="img/Shield.png"/></a></div>
+             {% if is_admin %}
+             <div id="right_logo"><a href="/boards"><img src="img/Shield.png"/></a></div>
+             {% else %}
+             <div id="right_logo"><img src="img/Shield.png"/></div>
+             {% endif %}
+             <div id="title"><a href="/">Thegither</a></div>
+             <div id="slogan">A' thegither they will sup!</div>
+          </div> <!-- /header -->
+          <div id="page_contents">
+             <div id="main_menu">
+             {% block main_menu %}
+                {% include "template/main-menu.html" %}
+             {% endblock %}
+             </div> <!-- /main-menu -->
+             {% if user %}
+             <div id="user_id">{{user.nickname()}}</div>
+             {% endif %}
+             <div id="main_contents">
+                {% block intro %}
+                {% if page_title %}
+                <div id="page_intro">
+                   <h1 class="page-title">{{page_title}}</h1>
+                </div> <!-- /page-intro -->
+                {% endif %}
+                {% endblock %}
+                {% block page_menu %}
+                {% endblock %}
+                {% block contents %}
+                <div class="user-message">
+                   --- NEED TO DEFINE THE MAIN CONTENTS ---
+                </div>
+                {% endblock %}
+             </div> <!-- /main-contents -->
+          </div> <!-- /page-contents -->
+          <div id="footer">
+             <div id="copyright">Copyright 2013.   All rights reserved.</div>
+             <div><a href="mailto:ben@bpreece.com">Contact me</a></div>
+          </div> <!-- /footer -->
+      </div> <!-- /main-wrapper -->
+   </body>
+</html>

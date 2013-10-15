@@ -1,0 +1,77 @@
+
+{% extends "template/base.html" %}
+
+{% block main_menu %}
+   <div id="main_menu">
+      {% if user %} 
+      <ul class="menu-list">
+         {% if can_write %}
+         <li class="menu-item"><a href="/edit-board?id={{board_id}}">Edit this board</a></li>
+         {% endif %}
+         {% if board.open_to_posts %}
+         <li class="menu-item"><a href="/edit-post?board-id={{board_id}}">Add a posting</a></li>
+         {% endif %}
+      </ul>
+      {% else %}
+      <div class="main_menu_message user-hint">
+         You must <a href="{{sign_on_url}}">sign on</a> to add a posting to this board.
+      </div>
+      {% endif %}
+   </div>
+{% endblock %}
+
+{% block intro %}
+   <div id="page_intro">
+      {% if not board.open_to_posts %}
+      <div class="user-hint">
+         This board has been closed to new posts.
+      </div>
+      {% endif %}
+      {% if posts %}
+      <div class="user-hint">
+         Select a posting to view it.
+      </div>
+      {% endif %}
+   </div>
+{% endblock %}
+
+{% block contents %}
+   {% if board.description %}
+   <div id="sidebar">
+      <div class="board-description">{{board.description}}</div>
+   </div> <!-- /sidebar -->
+   <div id="contents" class="with-sidebar">
+   {% else %}
+   <div id="contents">
+   {% endif %}
+      {% if posts %}
+      <ul class="post-list">
+         {% for post in posts %}
+         <li class="{{post.type}}">
+            <!-- <div  class="border-div" onclick="location.href('/post?id={{post.key.urlsafe()}}')"> -->
+            <div  class="border-div" onclick="location.href ='/post?id={{post.key.urlsafe()}}'">
+               <div class="post-type {{post.type}}">{{labels[post.type]}}:</div>
+               <div class="post-summary">{{post.summary}}</div>
+               <div class="post-information">{{post.information}}</div>
+            </div> <!-- border-div -->
+         </li>
+         {% endfor %}
+      </ul>
+      {% if x %}
+      <div style="margin-left:10px">
+         <form method="get">
+            <input type="hidden" name="id" value="{{board_id}}">
+            <input type="hidden" name="x" value="{{x}}">
+            <input type="submit" value="More">
+         </form>
+      </div>
+      {% endif %}
+      {% else %} {# posts #}
+      <div id="board_contents" class="user-hint">
+         There are no postings on this board yet.
+      </div>
+      {% endif %} {# posts #}
+      <div style="clear:both"></div>
+   </div> <!-- /contents -->
+{% endblock %}
+

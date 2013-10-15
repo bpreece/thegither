@@ -1,0 +1,93 @@
+
+{% extends "template/base.html" %}
+
+{% block page_menu %}
+   {% if user and user.user_id() == post.poster %} 
+   <ul id="page_menu" class="menu-list">
+      <li class="menu-item"><a href="/edit-post?id={{post.key.urlsafe()}}">Edit this post</a></li>
+   </ul>
+   {% endif %}
+{% endblock %}
+
+{% block intro %}
+   <div id="page_intro">
+      <h2>{{post.summary}}</h2>
+   </div>
+{% endblock %}
+
+{% block contents %}
+   {% if board.description %}
+   <div id="sidebar">
+      <div class="board-description">{{board.description}}</div>
+   </div> <!-- /sidebar -->
+   <div id="contents" class="with-sidebar">
+   {% else %}
+   <div id="contents">
+   {% endif %}
+      <div id="post_contents">
+         <div id="post_timestamp">
+            Posted on: {{post.timestamp}}
+         </div>
+         <div id="post_summary">
+            <span class="post-type {{post.type}}">{{labels[post.type]}}:</span> {{post.summary}}
+         </div>
+         {% if post.information %}
+         <div id="post_information">{{post.information}}</div>
+         {% endif %}
+         {% if user %}
+            {% if user.user_id() == post.poster %} 
+            <h3>Responses</h3>
+            {% if responses %}
+            <ul class="response-list">
+               {% for response in responses %}
+               <li>{{response.message}} &mdash;
+               <a href="mailto:{{response.responder_email}}">{{response.responder_name}}</a></li>
+               {% endfor %}
+            </ul>
+            {% if x %}
+            <form method="get">
+               <input type="hidden" name="id" value="{{post_id}}">
+               <input type="hidden" name="x" value="{{x}}">
+               <input type="submit" value="Next">
+            </form>
+            {% endif %}
+            {% else %} {# reponses #}
+            <div class="user-hint">
+               Nobody has responded to this post yet.
+            </div>
+            {% endif %} {# reponses #}
+            {% else %}  {# post.poster #}
+            {% if message %}
+            <div class='user-hint'>
+               {{message}}
+            </div>
+            {% elif post.open_to_responses %}
+            <form id="post_response" method="POST">
+               <h3>Respond to this post:</h3>
+               <input type="hidden" name="post-id" value="{{post.key.urlsafe()}}"/>
+               <div class='form-field'>
+                  <textarea name="response-text" id="response_text" rows=5></textarea>
+                  <div class="user-hint">
+                     When you respond to this post, your Google account email
+                     address will be provided to the poster.
+                  </div>
+               </div>
+               <div style="margin-top: 0.5em">
+                  <input type="submit" value="Submit"/>
+               </div>
+            </form>
+            {% else %} {# post.open_to_responses #}
+            <div class="user-hint">
+               This post has been closed to responses.
+            </div>
+            {% endif %} {# post.open_to_responses #}
+            {% endif %} {# /user_id #}
+         {% else %}  {# ?user #}
+         <div class="field-hint">
+            You must <a href="{{sign_on_url}}">sign on</a> to respond to postings.
+         </div>
+         {% endif %} {# /user #}
+      </div> <!-- /post_contents -->
+   </div> <!-- /contents -->
+{% endblock %}
+

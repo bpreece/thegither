@@ -1,0 +1,180 @@
+
+/*
+ * Attributes that apply to the whole page
+ */
+
+body {
+   background-color: white;
+   font-family: "Times New Roman", Roman, Serif;
+}
+
+/*
+ * Page header attributes
+ */
+
+#title {
+   font-size: 250%;
+}
+
+#slogan {
+   font-style: italic;
+}
+
+/*
+ * Attributes for the page contents.  The page contents contains the main menu,
+ * the main contents, and a sidebar if there is one.
+ */
+
+/*
+ * Main menu attributes
+ */
+
+#main_menu {
+   border-top: 1px solid #cccccc;
+   border-bottom: 1px solid #cccccc;
+}
+
+li.menu-item {
+   background-color: #89baff;
+}
+
+li.menu-item a {
+   color: black;
+   text-decoration: none;
+   font-family: Verdana, Geneva, sans-serif;
+}
+
+li.menu-item:hover {
+   background-color: #1f62c2;
+}
+
+li.menu-item:hover a {
+   color: white;
+   text-decoration: underline;
+}
+
+/* 
+ * Sidebar attributes 
+ */
+
+/*
+ * Main contents attributes
+ */
+
+/*
+ * Main contents attributes
+ */
+
+/*
+ * Simple list attributes
+ */
+
+ul.board-list li,
+ul.post-list li,
+ul.response-list li {
+   font-family: Arial, Sans-Serif;
+   text-decoration: none;
+   color: black;
+}
+
+ul.board-list li a,
+ul.post-list li a {
+   font-family: Arial, Sans-Serif;
+   text-decoration: none;
+   color: black;
+}
+
+ul.board-list li a:hover,
+ul.post-list li a:hover {
+   text-decoration: underline;
+   background-color: #1f62c2;
+   color: white;
+}
+
+/*
+ * Attributes for the board page
+ */
+
+#post_timestamp {
+   font-family: Verdana, Geneva, Sans-Serif;
+   font-size: 85%;
+}
+
+a.post_summary {
+   font-family: Verdana, Geneva, Sans-Serif;
+}
+
+#post_information {
+   font-family: Verdana, Geneva, Sans-Serif;
+   white-space: pre-wrap;
+}
+
+#user_id {
+   margin: 0 10px;
+   text-align: right;
+   font-size: 85%;
+}
+
+.board-description {
+   font-style: italic;
+   border: 1px solid #ccccff;
+   padding: 0.75em 0.5em;
+   white-space: pre-wrap;
+}
+
+.border-div {
+   border: 1px solid #ccccff;
+   padding: 0.75em 0.5em;
+   height: 100%;
+}
+
+body.board ul.post-list li {
+   margin-top: 0.5em;
+   margin-bottom: 0.5em;
+}
+
+body.board ul.post-list li .wrapper a {
+   text-decoration: none;
+   color: black;
+}
+
+body.board ul.post-list li .wrapper a .post-information {
+   color: #555;
+}
+
+li.want .post-type {
+   background-color: #fcf4f0;
+}
+
+li.have .post-type {
+   background-color: #f0fff0;
+}
+
+.post-list .post-type {
+   font-weight: bold;
+}
+
+.field-label {
+   font-weight: bold;
+}
+
+.user-hint{
+   font-style: italic;
+   font-size: 85%;
+   color: #666688;
+}
+
+/*
+ * Footer attributes
+ */
+
+#footer {
+   border-top: 1px solid #cccccc;
+}
+
+#copyright {
+   padding-top: 1em;
+   text-align: center;
+   font-size: 85%;
+   font-style: italic;
+}

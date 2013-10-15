@@ -1,0 +1,62 @@
+application: thegithir
+version: 1
+runtime: python27
+api_version: 1
+threadsafe: true
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
+
+handlers:
+
+- url: /css
+  static_dir: thegither/static/css
+
+- url: /js
+  static_dir: thegither/static/js
+
+- url: /img
+  static_dir: thegither/static/img
+
+- url: /doc
+  static_dir: thegither/static/doc
+
+- url: /user-posts
+  script: thegither.user.application
+  login: required
+
+- url: /user-boards
+  script: thegither.user.application
+  login: required
+
+- url: /boards
+  script: thegither.board.application
+  login: required
+
+- url: /board
+  script: thegither.board.application
+
+- url: /edit-board
+  script: thegither.edit-board.application
+  login: required
+
+- url: /post
+  script: thegither.post.application
+
+- url: /edit-post
+  script: thegither.edit-post.application
+  login: required
+
+- url: /demo
+  static_dir: thegither/static/html/demo
+
+#- url: /admin
+#  script: admin.py
+#  login: required
+
+- url: /.*
+  script: thegither.main.application
+

@@ -1,0 +1,57 @@
+
+{% extends "template/thegither.html" %}
+
+{% block page_menu %}
+   <ul class="menu-list page-menu">
+      <li class="menu-item"><a href="/edit-board">New board</a></li>
+   </ul> <!-- /left-menu -->
+{% endblock %}
+
+{% block contents %}
+   <div id="user_page">
+   {% if boards is defined %}
+      {% if boards %}
+      <div class="user-hint">Select a board to view it.</div>
+      <ul class="board-list">
+         {% for board in boards %}<li>
+         <a href="board?id={{board.key.urlsafe()}}">
+            <span class="board-title">{{board.board_title}}</span>
+         </a>
+         </li>{% endfor %}
+      </ul> <!-- /board-list -->
+      {% if x %}
+      <form method=get>
+         <input type="hidden" name="x" value="{{x}}">
+         <input type="submit" value="Next"> 
+      </form>
+      {% endif %} {# x #}
+      {% else %} {# boards #}
+      <div class="user-hint">
+         You have no boards to view.
+      </div>
+      {% endif %} {# boards #}
+   {% elif posts is defined %}
+      {% if posts %}
+      <div class="user-hint">Select a post to view it.</div>
+      <ul class="post-list">
+      {% for post in posts %}<li class="{{post.type}}">
+         <a href="post?id={{post.key.urlsafe()}}">
+            <span class='post-summary'>{{post.summary}}</span>
+         </a>
+      </li>{% endfor %}
+      </ul>
+      {% if x %}
+      <form method="get">
+         <input type="hidden" name="x" value="{{x}}">
+         <input type="submit" value="Next">
+      </form>
+      {% endif %}
+      {% else %} {# posts #}
+      <div class="user-hint">
+         You have no posts to view.
+      </div>
+      {% endif %} {# posts #}
+   {% endif %}
+   </div> <!-- /user_page -->
+{% endblock %}
+

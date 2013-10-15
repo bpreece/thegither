@@ -1,0 +1,104 @@
+{% extends "template/base.html" %}
+
+{% block intro %}
+   <div id="page_intro">
+      {% if post %}
+      <h2>{{post.summary}}</h2>
+      {% else %}
+      <h2>New Post</h2>
+      {% endif %}
+   </div>
+{% endblock %}
+
+{% block contents %}
+   <div id="sidebar">
+      <div class="board-description">{{board.description}}</div>
+   </div> <!-- /sidebar -->
+   <div id="contents" class="with-sidebar">
+      <form id="edit-board-form" method="POST" class="board-form">
+         <input type="hidden" id="board-id" value="{{board.key.urlsafe()}}" />
+         <div class="form-field">
+            <div class="field-label">Type of post:</div>
+            <div class="field-control">
+               <input type="radio" name="post-type" id="have_type" value="have" {{have_checked}}>
+              <label for="have_type">{{board.have_label}}</label></br>
+               <input type="radio" name="post-type" id="want_type" value="want" {{want_checked}}>
+              <label for="want_type">{{board.want_label}}</label>
+               <div class='user-hint'>
+                  Check the appropriate button to indicate whether this is a
+                  "{{board.have_label}}" or a "{{board.want_label}}" post.
+               </div>
+            </div> <!-- field-control -->
+         </div> <!-- login-checkbox -->
+         <div class="form-field">
+            <div class="field-label">Summary:</div>
+            <div class="field-control">
+               {% if post %}
+               <input type="text" name="summary-field" value="{{post.summary}}">
+               {% else %}
+               <input type="text" name="summary-field">
+               {% endif %}
+               <div class='user-hint'>
+                  Provide a short (one or two sentences) summary.
+               </div>
+            </div> <!-- field-control -->
+         </div> <!-- title-field -->
+         <div class="form-field">
+            <div class="field-label">Information:</div>
+            <div class="field-control">
+               {% if post %}
+               <textarea name="information-field" rows="4">{{post.information}}</textarea>
+               {% else %}
+               <textarea name="information-field" rows="4"></textarea>
+               {% endif %}
+               <div class='user-hint'>
+                  Optionally provide additional information about your posting.
+               </div>
+            </div> <!-- field-control -->
+         <div class="form-field">
+            <div class="field-label">Publish:</div>
+            <div class="field-control">
+               <input type="checkbox" name="published-checkbox" {{published}}>
+               <div class='user-hint'>
+                  Check this box when you're ready to publish this post.  
+                  Uncheck this box to unpublish the post again.   Unpublishing
+                  a post does not delete the post; it only makes the post
+                  unavailable for other users to see.
+               </div>
+            </div> <!-- field-control -->
+         </div> <!-- published-checkbox -->
+         <div class="form-field">
+            <div class="field-label">Close to posts:</div>
+            <div class="field-control">
+               <input type="checkbox" name="closed-checkbox" value="closed" {{closed}}>
+               <div class='user-hint'>
+                  Check this box to disallow new posts.  This board will still
+                  be viewable if the Publish checkbox is checked, but new posts
+                  to this board will not be allowed.
+               </div>
+            </div> <!-- /field-control -->
+         </div> <!-- closed-checkbox -->
+      <!--
+         <div class="form-field">
+            <div class="field-label">Contact methods:</div>
+            <div class="field-control">
+               <input type="checkbox" name="email-checkbox" id="email_checkbox" {{email_checked}}>
+               <label for="email_checkbox">E-mail</label></br>
+               <input type="checkbox" name="twitter-checkbox" id="twitter_checkbox" {{twitter_checked}}>
+               <label for="twitter_checkbox">Twitter</label></br>
+               <input type="checkbox" name="text-message-checkbox" id="text_message_checkbox" {{text_msg_checked}}>
+               <label for="text_message_checkbox">Text message</label>
+               <div class='user-hint'>
+                  Check the appropriate buttons to indicate how you want to
+                  receive responses.
+               </div>
+            </div>
+         </div>
+      -->
+         <div class='controls-div'>
+             <input type="submit" value="Submit Post">
+             <input type="submit" value="Cancel">
+         </div>
+      </form>
+   </div> <!-- /contents -->
+{% endblock %}
