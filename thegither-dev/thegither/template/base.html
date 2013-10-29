@@ -14,7 +14,7 @@
        <div id="main_wrapper">
           {% block header %}
           <div id="header">
-             <div id="title"><a href="/board?id={{board_id}}">{{page_title}}</a></div>
+             <div id="title"><a href="/board?id={{board_id}}">{{page_title|escape}}</a></div>
           </div> <!-- /header -->
           {% endblock %}
           <div id="page_contents">

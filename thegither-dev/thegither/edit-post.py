@@ -1,7 +1,7 @@
 
-
 from google.appengine.api import users
 
+import cgi
 import os
 import urllib
 import jinja2
@@ -77,8 +77,7 @@ class EditPost(webapp2.RequestHandler):
             'page_title': 'Edit Post',
             'post': post,
             'board': board,
-            'post_summary': post.summary,
-            'post_information': post.information,
+            'board_id': post.board_id,
             'have_checked': 'checked' if post.type == 'have' else '',
             'want_checked': 'checked' if post.type == 'want' else '',
             'published': 'checked' if post.published else '',
@@ -110,7 +109,6 @@ class EditPost(webapp2.RequestHandler):
          template_values.update({
             'page_title': board.board_title,
             'board': board,
-            'board': model.Board.query_by_id(board_id),
             'board_id': board_id,
             'have_checked': 'checked',
             'published': 'checked',

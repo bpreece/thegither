@@ -1,4 +1,3 @@
-
 from google.appengine.api import users
 from google.appengine.datastore.datastore_query import Cursor
 

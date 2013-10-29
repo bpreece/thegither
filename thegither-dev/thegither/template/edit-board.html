@@ -21,14 +21,14 @@ Of course, the administrators are actually pretty good guys.  If there are any i
          <div class="form-field">
             <div class="field-label">Page Title:</div>
             <div class="field-control">
-               <input type="text" name="title-field" value="{{board_title}}">
+               <input type="text" name="title-field" value="{{board.board_title|escape}}">
                <div class='user-hint'>This will be the title at the top of your thegither board.</div>
             </div> <!-- /field-control -->
          </div> <!-- /form-field -->
          <div class="form-field">
             <div class="field-label">"Have" label:</div>
             <div class="field-control">
-               <input type="text" name="have-label-field" value="{{have_label}}">
+               <input type="text" name="have-label-field" value="{{board.have_label|escape}}">
                <div class='user-hint'>
                   This is the label for the "Have" entries. For example, on a lost and found board, this
                   might be "FOUND".
@@ -38,7 +38,7 @@ Of course, the administrators are actually pretty good guys.  If there are any i
          <div class="form-field">
             <div class="field-label">"Want" label:</div>
             <div class="field-control">
-               <input type="text" name="want-label-field" value="{{want_label}}">
+               <input type="text" name="want-label-field" value="{{board.want_label|escape}}">
                <div class='user-hint'>
                   This is the label for the "Want" entries. For example, on a lost and found board, this
                   might be "LOST".
@@ -68,7 +68,7 @@ Of course, the administrators are actually pretty good guys.  If there are any i
          <div class="form-field">
             <div class="field-label">Page description:</div>
             <div class="field-control">
-               <textarea name="description-field" rows=5>{{description}}</textarea>
+               <textarea name="description-field" rows=5>{{board.description|escape}}</textarea>
                <div class='user-hint'>
                   Provide a short description of your board; for example, identify your organization
                   say what your board is for, list any basic rules for using your board.

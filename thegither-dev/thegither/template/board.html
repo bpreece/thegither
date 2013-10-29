@@ -38,7 +38,7 @@
 {% block contents %}
    {% if board.description %}
    <div id="sidebar">
-      <div class="board-description">{{board.description}}</div>
+      <div class="board-description">{{board.description|escape}}</div>
    </div> <!-- /sidebar -->
    <div id="contents" class="with-sidebar">
    {% else %}
@@ -50,9 +50,9 @@
          <li class="{{post.type}}">
             <!-- <div  class="border-div" onclick="location.href('/post?id={{post.key.urlsafe()}}')"> -->
             <div  class="border-div" onclick="location.href ='/post?id={{post.key.urlsafe()}}'">
-               <div class="post-type {{post.type}}">{{labels[post.type]}}:</div>
-               <div class="post-summary">{{post.summary}}</div>
-               <div class="post-information">{{post.information}}</div>
+               <div class="post-type {{post.type}}">{{labels[post.type]|escape}}:</div>
+               <div class="post-summary">{{post.summary|escape}}</div>
+               <div class="post-information">{{post.information|escape}}</div>
             </div> <!-- border-div -->
          </li>
          {% endfor %}

@@ -3,7 +3,7 @@
 {% block intro %}
    <div id="page_intro">
       {% if post %}
-      <h2>{{post.summary}}</h2>
+      <h2>{{post.summary|escape}}</h2>
       {% else %}
       <h2>New Post</h2>
       {% endif %}
@@ -12,7 +12,7 @@
 
 {% block contents %}
    <div id="sidebar">
-      <div class="board-description">{{board.description}}</div>
+      <div class="board-description">{{board.description|escape}}</div>
    </div> <!-- /sidebar -->
    <div id="contents" class="with-sidebar">
       <form id="edit-board-form" method="POST" class="board-form">
@@ -21,12 +21,12 @@
             <div class="field-label">Type of post:</div>
             <div class="field-control">
                <input type="radio" name="post-type" id="have_type" value="have" {{have_checked}}>
-              <label for="have_type">{{board.have_label}}</label></br>
+              <label for="have_type">{{board.have_label|escape}}</label></br>
                <input type="radio" name="post-type" id="want_type" value="want" {{want_checked}}>
-              <label for="want_type">{{board.want_label}}</label>
+              <label for="want_type">{{board.want_label|escape}}</label>
                <div class='user-hint'>
                   Check the appropriate button to indicate whether this is a
-                  "{{board.have_label}}" or a "{{board.want_label}}" post.
+                  "{{board.have_label|escape}}" or a "{{board.want_label|escape}}" post.
                </div>
             </div> <!-- field-control -->
          </div> <!-- login-checkbox -->
@@ -34,7 +34,7 @@
             <div class="field-label">Summary:</div>
             <div class="field-control">
                {% if post %}
-               <input type="text" name="summary-field" value="{{post.summary}}">
+               <input type="text" name="summary-field" value="{{post.summary|escape}}">
                {% else %}
                <input type="text" name="summary-field">
                {% endif %}
@@ -47,7 +47,7 @@
             <div class="field-label">Information:</div>
             <div class="field-control">
                {% if post %}
-               <textarea name="information-field" rows="4">{{post.information}}</textarea>
+               <textarea name="information-field" rows="4">{{post.information|escape}}</textarea>
                {% else %}
                <textarea name="information-field" rows="4"></textarea>
                {% endif %}

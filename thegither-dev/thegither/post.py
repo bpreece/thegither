@@ -1,5 +1,6 @@
 from google.appengine.api import users
 
+import cgi
 import os
 import urllib
 import jinja2
@@ -54,8 +55,8 @@ class Post(webapp2.RequestHandler):
 
       template_values = {
          'post': post,
-         'board': board,
          'post_id': id,
+         'board': board,
          'board_id': post.board_id,
          'body_class': 'post',
          'page_title': board.board_title,

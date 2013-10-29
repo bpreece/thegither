@@ -31,7 +31,7 @@
                 {% block intro %}
                 {% if page_title %}
                 <div id="page_intro">
-                   <h1 class="page-title">{{page_title}}</h1>
+                   <h1 class="page-title">{{page_title|escape}}</h1>
                 </div> <!-- /page-intro -->
                 {% endif %}
                 {% endblock %}

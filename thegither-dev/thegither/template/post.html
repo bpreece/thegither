@@ -11,14 +11,14 @@
 
 {% block intro %}
    <div id="page_intro">
-      <h2>{{post.summary}}</h2>
+      <h2>{{post.summary|escape}}</h2>
    </div>
 {% endblock %}
 
 {% block contents %}
    {% if board.description %}
    <div id="sidebar">
-      <div class="board-description">{{board.description}}</div>
+      <div class="board-description">{{board.description|escape}}</div>
    </div> <!-- /sidebar -->
    <div id="contents" class="with-sidebar">
    {% else %}
@@ -29,10 +29,10 @@
             Posted on: {{post.timestamp}}
          </div>
          <div id="post_summary">
-            <span class="post-type {{post.type}}">{{labels[post.type]}}:</span> {{post.summary}}
+            <span class="post-type {{post.type}}">{{labels[post.type]}}:</span> {{post.summary|escape}}
          </div>
          {% if post.information %}
-         <div id="post_information">{{post.information}}</div>
+         <div id="post_information">{{post.information|escape}}</div>
          {% endif %}
          {% if user %}
             {% if user.user_id() == post.poster %} 
@@ -40,8 +40,8 @@
             {% if responses %}
             <ul class="response-list">
                {% for response in responses %}
-               <li>{{response.message}} &mdash;
-               <a href="mailto:{{response.responder_email}}">{{response.responder_name}}</a></li>
+               <li>{{response.message|escape}} &mdash;
+               <a href="mailto:{{response.responder_email|escape}}">{{response.responder_name|escape}}</a></li>
                {% endfor %}
             </ul>
             {% if x %}
@@ -59,7 +59,7 @@
             {% else %}  {# post.poster #}
             {% if message %}
             <div class='user-hint'>
-               {{message}}
+               {{message|escape}}
             </div>
             {% elif post.open_to_responses %}
             <form id="post_response" method="POST">

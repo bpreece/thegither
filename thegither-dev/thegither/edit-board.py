@@ -1,6 +1,7 @@
 
 from google.appengine.api import users
 
+import cgi
 import os
 import urllib
 import jinja2
@@ -72,14 +73,10 @@ class EditBoard(webapp2.RequestHandler):
 
          template_values.update({
             'page_title': board.board_title,
-            'owner_id': board.owner_id,
+            'board': board,
             'board_id': id,
-            'board_title': board.board_title,
-            'have_label': board.have_label,
-            'want_label': board.want_label,
             'published': 'checked' if board.published else '',
             'closed': '' if board.open_to_posts else 'checked',
-            'description': board.description,
          })
 
       # Now display the page

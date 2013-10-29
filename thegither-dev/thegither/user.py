@@ -1,5 +1,6 @@
 from google.appengine.api import users
 
+import cgi
 import os
 import urllib
 import jinja2
