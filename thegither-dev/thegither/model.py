@@ -21,7 +21,8 @@ class Board(ndb.Model):
    description = ndb.TextProperty()
 
    def is_readable_by_user(self, user):
-      return True;
+      return (users.is_current_user_admin() or
+            self.published)
 
    def is_writable_by_user(self, user):
       return (users.is_current_user_admin() or
@@ -68,7 +69,9 @@ class Posting(ndb.Model):
    open_to_responses = ndb.BooleanProperty(default=True)
 
    def is_readable_by_user(self, user):
-      return True
+      return (users.is_current_user_admin() or
+            (user != None and user.user_id() == self.poster) or
+            (self.published and Board.query_by_id(self.board_id).published))
 
    def is_writable_by_user(self, user):
       return (users.is_current_user_admin() or

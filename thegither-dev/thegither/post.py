@@ -79,6 +79,13 @@ class Post(webapp2.RequestHandler):
          post = model.Posting.query_by_id(id)
          board = model.Board.query_by_id(post.board_id)
 
+      # Check that the posting is published
+
+      if not post.is_readable_by_user(user):
+         self.error(404)
+         self.response.out.write('<div class="user-message">The page you\'re looking for does not exist.</div>')
+         return
+
       responses, cursor, more = model.Response.query_by_post(id, RESPONSES_PER_QUERY)
       if responses:
          template_values.update({

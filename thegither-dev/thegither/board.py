@@ -112,9 +112,16 @@ class Board(webapp2.RequestHandler):
          'labels': { 'have': board.have_label, 'want': board.want_label },
       }
 
-      # Get the user making the query, and set the template values accordingly
+      # check that the board is published
 
       user = users.get_current_user()
+      if not board.is_readable_by_user(user):
+         self.error(404)
+         self.response.out.write('<div class="user-message">The page you\'re looking for does not exist.</div>')
+         return
+
+      # Get the user making the query, and set the template values accordingly
+
       if user:
          template_values.update({
             'user': user,
